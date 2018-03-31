@@ -46,9 +46,7 @@ def _get_chromecast_from_host(host, tries=None, retry_wait=None, timeout=None,
                                CAST_TYPE_CHROMECAST)
     device = DeviceStatus(
         friendly_name=friendly_name, model_name=model_name,
-#        manufacturer=None, api_version=None,
-        manufacturer=None,
-        uuid=uuid, cast_type=cast_type,
+        manufacturer=None, uuid=uuid, cast_type=cast_type,
     )
     return Chromecast(host=ip_address, port=port, device=device, tries=tries,
                       timeout=timeout, retry_wait=retry_wait,
@@ -253,6 +251,11 @@ class Chromecast(object):
         return self.device.friendly_name
 
     @property
+    def uri(self):
+        """ Returns the device URI (ip:port) """
+        return "{}:{}".format(self.host, self.port)
+
+    @property
     def model_name(self):
         """ Returns the model name of the Chromecast device. """
         return self.device.model_name
@@ -444,5 +447,4 @@ class Chromecast(object):
     def __unicode__(self):
         return u"Chromecast({}, {}, {}, {}, {}, api={}.{})".format(
             self.host, self.port, self.device.friendly_name,
-            self.device.model_name, self.device.manufacturer,
-            self.device.api_version[0], self.device.api_version[1])
+            self.device.model_name, self.device.manufacturer)
