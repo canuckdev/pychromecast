@@ -159,8 +159,6 @@ class Chromecast(object):
                                 dev_status.model_name),
                     manufacturer=(device.manufacturer or
                                   dev_status.manufacturer),
-                    api_version=(device.api_version or
-                                 dev_status.api_version),
                     uuid=(device.uuid or
                           dev_status.uuid),
                     cast_type=(device.cast_type or
